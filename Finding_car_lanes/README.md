@@ -36,7 +36,7 @@ Initailly, edges are detected by:
 
 The result of this step provides all the edges drawn on a black background below.
 
-![Detection of edges][image1]: D:/ML/Udacity/CarND-LaneLines-P1/test_images_steps/detect_edges.jpg "Detection of edges"
+![Detection of edges](./test_images_steps/detect_edges.jpg "Detection of edges")
 
 ---
 
