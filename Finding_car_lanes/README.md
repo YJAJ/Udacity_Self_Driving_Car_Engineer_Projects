@@ -53,7 +53,7 @@ To do so, I
 
 This operation gives only edges within the region of interests.
 
-![Masked edges][image2]: ./test_images_steps/masked_edges.jpg "Masked edges"
+![Masked edges](./test_images_steps/masked_edges.jpg "Masked edges")
 
 ---
 
@@ -63,7 +63,7 @@ It is time to connect the detected edges and pixels around them. We are going to
 
 The result image connects edges reasonably well. However, as you can see the image below, the large gaps between edges are not connected.
 
-![Hough lines][image3]: ./test_images_steps/hough_edges.jpg "Hough lines"
+![Hough lines](./test_images_steps/hough_edges.jpg "Hough lines")
 
 For these types of issues, I am interpolating a line with a slope and an intercept so that the connection is drawn along this calculated line.
 
@@ -83,7 +83,7 @@ The process of interpolating coordinates is as follow:
 
 The output of this process provides a smooth connected lane on the left and right side below:
 
-![Connected lines][image4]: ./test_images_steps/connected_edges.jpg "Connected lines"
+![Connected lines](./test_images_steps/connected_edges.jpg "Connected lines")
 
 ---
 ### Draw lines
@@ -92,13 +92,14 @@ Finally, the interpolated lanes are drawn on the image with np.line() function w
 
 The final output image is:
 
-![Drawn lines][image5]: ./test_images_steps/solidYellowCurve.jpg "Output image"
+![Drawn lines](./test_images_steps/solidYellowCurve.jpg "Output image")
 
 ---
 
 These five steps are then repeated on test images and video stream. The outputs are located in:
 
 ~/test_images_output/
+
 ~/test_videos_output/
 
 
