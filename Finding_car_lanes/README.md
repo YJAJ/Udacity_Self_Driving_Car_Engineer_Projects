@@ -63,7 +63,7 @@ It is time to connect the detected edges and pixels around them. We are going to
 
 The result image connects edges reasonably well. However, as you can see the image below, the large gaps between edges are not connected.
 
-![Hough lines](./test_images_steps/hough_edges.jpg "Hough lines")
+![Hough lines](./test_images_steps/line_edges.jpg "Hough lines")
 
 For these types of issues, I am interpolating a line with a slope and an intercept so that the connection is drawn along this calculated line.
 
@@ -83,7 +83,7 @@ The process of interpolating coordinates is as follow:
 
 The output of this process provides a smooth connected lane on the left and right side below:
 
-![Connected lines](./test_images_steps/connected_edges.jpg "Connected lines")
+![Connected lines](./test_images_steps/connected_lines.jpg "Connected lines")
 
 ---
 ### Draw lines
