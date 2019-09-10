@@ -102,6 +102,12 @@ These five steps are then repeated on test images and video stream. The outputs 
 
 ~/test_videos_output/
 
+The lane line detection on video streams are turned out to be OK as follows:
+
+![solid_white_right_solution](test_videos_output/solidWhiteRight_short.gif)
+
+![solid_yellow_left_solution](test_videos_output/solidYellowLeft_short.gif)
+
 
 ## 2. What worked and what did not work so well
 
