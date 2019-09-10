@@ -109,7 +109,9 @@ Overall, the pipeline performs reasonably on the testing images and videos. Howe
 
 Examining the outputs of tested images and vidoes, the first disadvantage I found was caused from a colour. I noticed that if the background images has a saturated colour close to white within the region of interests, the lanes can be quite shaky and confused.
 
-I also tested my pipeline on the challenge video stream and it performed terribly. Not only it cannot pick up some lanes, but also it connects between coordinates from left lanes and those from right lanes. In addition, this pipeline does not work for curved section of the lanes.
+I also tested my pipeline on the challenge video stream and it performed terribly. Not only it cannot pick up some lanes, but also it connects between coordinates from left lanes and those from right lanes. In addition, this pipeline does not work for curved section of the lanes. However, after averaging the interporlation of the current lane line with previous 20 lane lines, it imroved remarkably - but still not perfect.
+
+![challenge_solution](test_videos_output/challenge_short.gif)
 
 I experimented around my method in interpolating lines and found that some column and row coordinates are provided with unreliable numbers (e.g. coordinate values are larger than maximum column and row sizes of the image). I believe this caused from the combination of the masking method that uses hard-coded polygonal region of interests and the interpolating method that only uses first order polyfit mechanism.
 
