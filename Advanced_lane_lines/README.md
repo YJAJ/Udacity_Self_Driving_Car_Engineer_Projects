@@ -41,9 +41,11 @@ Corners found and drawn on a chessboard
 ![corners_drawn_on_chessboard](./Example_images/draw_lines_chessboard.PNG)
 
 Original distorted chessboard image
+
 ![distorted_chessboard](./Example_images/distorted_chessboard.PNG)
 
 Undistorted chessboard image
+
 ![undistorted_chessboard](./Example_images/undistorted_chessboard.PNG)
 
 
@@ -54,9 +56,11 @@ Undistorted chessboard image
 This undistortion is applied to the view from a car below. The undistorted image looks almost similar to the original image but there is a slight difference, in particular, where you look at the car's bonnet is located.
 
 Original distorted chessboard image
+
 ![distorted_car](./Example_images/distorted_car.PNG)
 
 Undistorted chessboard image
+
 ![undistorted_car](./Example_images/undistorted_car.PNG)
 
 ### Thresholding combination of Grandients and Colours
