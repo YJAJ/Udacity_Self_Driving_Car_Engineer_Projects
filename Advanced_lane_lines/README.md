@@ -38,13 +38,13 @@ This steps are outlined in the 'create_object_image_points' function.
 
 Corners found and drawn on a chessboard
 
-![corners_drawn_on_chessboard][./Example_images/draw_lines_chessboard.PNG]
+![corners_drawn_on_chessboard](./Example_images/draw_lines_chessboard.PNG)
 
 Original distorted chessboard image
-![distorted_chessboard][./Example_images/distorted_chessboard.PNG]
+![distorted_chessboard](./Example_images/distorted_chessboard.PNG)
 
 Undistorted chessboard image
-![undistorted_chessboard][./Example_images/undistorted_chessboard.PNG]
+![undistorted_chessboard](./Example_images/undistorted_chessboard.PNG)
 
 
 ## Pipeline description for images
@@ -54,10 +54,10 @@ Undistorted chessboard image
 This undistortion is applied to the view from a car below. The undistorted image looks almost similar to the original image but there is a slight difference, in particular, where you look at the car's bonnet is located.
 
 Original distorted chessboard image
-![distorted_car][./Example_images/distorted_car.PNG]
+![distorted_car](./Example_images/distorted_car.PNG)
 
 Undistorted chessboard image
-![undistorted_car][./Example_images/undistorted_car.PNG]
+![undistorted_car](./Example_images/undistorted_car.PNG)
 
 ### Thresholding combination of Grandients and Colours
 
@@ -76,20 +76,20 @@ The 'find_sobel' function below returns the maginitude changes of either x or y 
 
 The 'find_magnitude' function below returns both x ad y's changes in magnitudes. This function picks up the gradient differences well as seen below. When I use a sobel kernel size 19, more coarse gradient differences are returned - the lines are thicker.
 
-![magnitude_kernel19][./Example_images/magnitude_threshold_19.PNG]
+![magnitude_kernel19](./Example_images/magnitude_threshold_19.PNG)
 
 When a sobel kernel size 3 is used, more refined lines are shown.
 
-![magnitude_kernel3][./Example_images/magnitude_threshold_3.PNG]
+![magnitude_kernel3](./Example_images/magnitude_threshold_3.PNG)
 
 
 A direction of gradients can be calculated through a arctan function. This function alone does not return clear lines. In fact, it is quite noisy, but it helps to identify lines on the ground only.
 
-![direction][./Example_images/direction_threshold.PNG]
+![direction](./Example_images/direction_threshold.PNG)
 
 All these efforts to differentiate gradients are combined through the 'combine_threshold_gradients' function, which provides the following binary image:
 
-![combined_gradient][./Example_images/combined_gradient.PNG]
+![combined_gradient](./Example_images/combined_gradient.PNG)
 
 #### Extract features through colour thresholding
 
@@ -99,19 +99,19 @@ I am selecting test image 4 as it has a large spot for excessive brightness with
 
 As seen below, the 'R' channel binary shows a large white spot towards top left.
 
-![why_not_choosing_R_channel][./Example_images/why_not_R.PNG]
+![why_not_choosing_R_channel](./Example_images/why_not_R.PNG)
 
 It seems to be a little weaker, but binary green with mask seems to be a better choice when there is much light.
 
-![comparison_RGB][./Example_images/comparison_RGB.PNG]
+![comparison_RGB](./Example_images/comparison_RGB.PNG)
 
 The 'find_hls' function seperates 'saturation' channel and it does a great job in separation lines.
 
-![saturation_binary][./Example_images/saturation_binary.PNG]
+![saturation_binary](./Example_images/saturation_binary.PNG)
 
 'Hue' and 'Lightness' channels are noisy due to a bright area presented in the image.
 
-![comparison_HLS][./Example_images/comparison_HLS.PNG]
+![comparison_HLS](./Example_images/comparison_HLS.PNG)
 
 These two colour thresholdings, channel 'G' and 'S' are combined together in the 'combine_threshold_colour' function.
 
@@ -119,7 +119,7 @@ These two colour thresholdings, channel 'G' and 'S' are combined together in the
 
 In this section, gradient and colour thresholdings are combined together. The image on the left below is showing contribution from grandient thresholding in green while blue colour represents colour thresholding.
 
-![combined_gradient_colour][./Example_images/combined_gradient_colour.PNG]
+![combined_gradient_colour](./Example_images/combined_gradient_colour.PNG)
 
 
 ### Transform perspectives
@@ -130,11 +130,11 @@ My goal is to identify four coordinates for the current lane algorithmically. Th
 
 With this method of the trapezoidal detection, I don't really need to draw the lines manually. Visualisation shows that the process is working as intended.
 
-![trapezoidal_shape][./Example_images/trapezoidal_shape.PNG]
+![trapezoidal_shape](./Example_images/trapezoidal_shape.PNG)
 
 This shape becomes a rectangle once it is warped - from a bird-eye view. The unwarped image is also compared below.
 
-![warped_unwarped][./Example_images/warped_unwarped.PNG]
+![warped_unwarped](./Example_images/warped_unwarped.PNG)
 
 
 ### Find lines from the transformed image
@@ -150,7 +150,7 @@ To find left and right lanes systematically, I will go through three steps:
 
 As seen below, on the left side, lane pixels found confidently. However, on the right side, there is a trace of pixels on the bottom only. This is because the right side lane scarecely present in the original warped image. It is indicated that a certain form of interpolation method must be incorporated for a video stream in order to detect right side lanes reliably.
 
-![tricky_lanes][./Example_images/tricky_lanes.PNG]
+![tricky_lanes](./Example_images/tricky_lanes.PNG)
 
 ### Calculated the radius of curvature of the lane and the position of the vehicle with respect to center
 
@@ -200,8 +200,8 @@ def measure_curvature(image, left_x_values, right_x_values, left_fit, right_fit)
 
 The 'finding_curved_lanes_pipeline' function encompasses the step-by-step application of a lane detection approch. This pipeline is applied to each image in the test folder.
 
-![sample_result1][./Example_images/sample_result1.PNG]
-![sample_result2][./Example_images/sample_result2.PNG]
+![sample_result1](./Example_images/sample_result1.PNG)
+![sample_result2](./Example_images/sample_result2.PNG)
 
 The lane areas are reliably drawn for each of original image. However, I expect the streams from the project video to be more challenging because there are many frames that require attention to shadow, brightness and greater curved areas.
 
@@ -220,7 +220,7 @@ For video streams,
 
 The sample result for the project video is prepared below:
 
-![video_result][./test_videos_output/project_video.gif]
+![video_result](./test_videos_output/project_video.gif)
 
 ---
 
