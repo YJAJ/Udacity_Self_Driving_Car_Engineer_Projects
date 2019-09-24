@@ -224,7 +224,7 @@ For video streams,
 
 The sample result for the project video is prepared below:
 
-![video_result](./test_videos_output/project_video.gif)
+![video_result](./test_videos_output/project_video_revised.gif)
 
 ---
 
