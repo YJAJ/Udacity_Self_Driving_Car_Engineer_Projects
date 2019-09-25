@@ -168,13 +168,13 @@ As seen below, on the left side, lane pixels found confidently. However, on the 
 
 ### Calculated the radius of curvature of the lane and the position of the vehicle with respect to center
 
-Because the image does not represent the real size of the world, it is important to convert image x and y coordinates to the real world size. I have used a real dimension of y as 9m because roughly there are three dashed lines in each warped image and each dashed lane lines are apparently 3 meters long.
+The method to measure curvature is described below. Because the image does not represent the real size of the world, it is important to convert image x and y coordinates to the real world size.
 
 ```
 def measure_curvature(image, left_x_values, right_x_values, left_fit, right_fit):
     #estimate conversions in x and y from pixel space to meters
     y_dim = 720
-    y_real = 9 #roughly there are three dashed lines in each warped image-dashed lane lines are 3 meters long each
+    y_real = 30.
     x_dim = 700
     x_real = 3.7
     y_per_pixel = y_real/y_dim
