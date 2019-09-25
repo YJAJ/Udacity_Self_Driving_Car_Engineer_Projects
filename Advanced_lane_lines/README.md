@@ -5,13 +5,15 @@
 The purpose of this project is to find curved lane lines where more challenging road situations exist, such as presence of shadows and plenty of brightness as well as other obstacles (e.g. bridges). The pipeline developed is tried on the road from still images and a video stream.
 
 --------
-The three additional efforts are made to improve a lane line detection efficient and more robust in this project.
+The four additional efforts are made to improve a lane line detection efficient and more robust in this project.
 
-1. To adapt changes from curved lanes, the trapezoidal shapes of the four source points are found through a lane detection method with mask, Hough transformation and interpolation, rather than a manual identification.
+1. Once lanes are found with certain level of confidence in the first frame, lane lines on the next frames can be searched within the margin from the previously-found lane line pixels.
 
-2. To avoid jitter, the previously-found lane lines are averaged, weighted and combined together with the current lane lines found. This practice improved the performance on the curved lane lines.
+2. To adapt changes from curved lanes, the trapezoidal shapes of the four source points are found through a lane detection method with mask, Hough transformation and interpolation, rather than a manual identification.
 
-3. Once lanes are found with certain level of confidence in the first frame, lane lines on the next frames can be searched within the margin from the previously-found lane line pixels.
+3. To avoid jitter, the previously-found lane slopes are averaged, weighted and combined together with the current lane slopes found. This practice improved the identification of the trapezoidal shapes.
+
+4. To avoid extremes, sanity checks on the distance between lanes and the position of lane lines are undertaken. If there is any indication of a bad detection, previous average is used instead of the current lanes found.
 
 --------
 
@@ -97,7 +99,7 @@ All these efforts to differentiate gradients are combined through the 'combine_t
 
 #### Extract features through colour thresholding
 
-Two colour thresholdings are used: Green channel and Saturation channel. I intentionally discarded using 'R' channel as it turns out that with using 'R' channel, the bright spot is recognised too much that the areas between the detected lanes are tilted too much towards the bright spot.
+Four colour thresholdings are used: Green channel, Saturation channel, Light channel (from Luv) and B channel (from LAB for yellow lanes). I intentionally discarded using 'R' channel as it turns out that with using 'R' channel, the bright spot is recognised too much that the areas between the detected lanes are tilted too much towards the bright spot.
 
 I am selecting test image 4 as it has a large spot for excessive brightness within the image to make a lane detection task difficult.
 
@@ -117,7 +119,15 @@ The 'find_hls' function seperates 'saturation' channel and it does a great job i
 
 ![comparison_HLS](./Example_images/comparison_HLS.PNG)
 
-These two colour thresholdings, channel 'G' and 'S' are combined together in the 'combine_threshold_colour' function.
+Lightness of 'L' channel helps to detect scarce white lines on the right side on the test images.
+
+![L_binary](./Example_images/L_binary.PNG)
+
+'B' channel helps to clerly detect yellow lane lines as follow:
+
+![B_binary](./Example_images/B_binary.PNG)
+
+These four colour thresholdings, channel 'G', 'S', 'L' and 'B' are combined together in the 'combine_threshold_colour' function.
 
 #### Combining gradient and colour thresholding together
 
@@ -199,6 +209,29 @@ def measure_curvature(image, left_x_values, right_x_values, left_fit, right_fit)
     return mean_curve, distance_centre
 ```
 
+### Sanity checks
+
+It is expected that the distance between lanes are decreased when the y position moves from bottom to up - in a trapezoidal shape.
+
+There are two sanity check points that we could try.
+
+1. The distances are reduced as y positions move from bottom to up of the image.
+2. In the video frame, the current position of lanes are not too varied from the previous average positions.
+
+```
+def sanity_check(dist_list, avr_list, tops, avr_tops):
+    incorrect = False
+    margin_of_error = 70
+    for i, each_dis in enumerate(dist_list):
+        if i<len(dist_list)-1 and each_dis < dist_list[i+1]:
+            incorrect = True
+            return incorrect
+    for j, point in enumerate(tops):
+        if (point-avr_tops[j] > margin_of_error) or (point-avr_tops[j] <  - margin_of_error):
+            incorrect = True
+            return incorrect
+    return incorrect
+```
 
 ### Example of the results
 
