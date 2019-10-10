@@ -1,0 +1,6 @@
+model_checkpoint_path: "model_cross4_set"
+all_model_checkpoint_paths: "model_cross0_set"
+all_model_checkpoint_paths: "model_cross1_set"
+all_model_checkpoint_paths: "model_cross2_set"
+all_model_checkpoint_paths: "model_cross3_set"
+all_model_checkpoint_paths: "model_cross4_set"
