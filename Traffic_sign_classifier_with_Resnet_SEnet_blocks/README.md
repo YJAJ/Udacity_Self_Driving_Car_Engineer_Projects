@@ -601,7 +601,7 @@ Again, the model classifies this sign correctly, which is Right-of-wa at the nex
 
 This is a correct classification - Priority road. Since there are not many signs with a yellow colour in the middle of the sign, I think this sign was quite easy to be predicted correctly. Again, the model is quite confident in classifying this sign as Priority road.
 
-![correct4](./correct4.PNG)
+![correct4](./examples/correct4.PNG)
 
 The model classifies this sign as Turn left ahead correctly with 95.41% confidence.
 
@@ -612,15 +612,15 @@ Relatively clear images are classified correctly by the model.
 
 Here are the images that were classified incorrectly. 
 
-![incorrect1](./incorrect1.PNG)
+![incorrect1](./examples/incorrect1.PNG)
 
 This image is incorrectly classified because it is difficult to classify even with my eyes. The correct lable is not even within the top 5 predictions. The model classifies this sign as Go straight or left with 65.86% confidence. 
 
-![incorrect2](./incorrect2.PNG)
+![incorrect2](./examples/incorrect2.PNG)
 
 This image is tricky one because it has two signs in one image. I thought the sign will be classified as either Vehicles over 3.5 metric tons prohibited or Ahead only. However, the classifier thinks neither; instead, it thinks the sign is about Roundabout mandatory with a high confidence of 99.54%. Again, the actual class is not within the top five predictions.
 
-![incorrect3](./incorrect3.PNG)
+![incorrect3](./examples/incorrect3.PNG)
 
 Interestingly, the model is very unsure about what this sign is. The highest confidence is 41.35% in classifying the sign as Road work. The actual label is not predicted within the top five classes. I think this image is relatively clear to be Double curve, however, the model finds it difficult to classify.
 
