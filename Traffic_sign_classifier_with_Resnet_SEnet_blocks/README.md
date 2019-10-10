@@ -569,7 +569,7 @@ class TrainPipeline:
             print("Test Accuracy = {:.3f}".format(test_accuracy))
 ```
 
-![result](./result.PNG)
+![result](./examples/result.PNG)
 
 
 With this training pipeline, Training accuracy is up to **98.2%** while Validation accuracy is around **99.5%**. Test accuracy turns out to be lower than the train and validation accuracy, being around **97.4%**.
