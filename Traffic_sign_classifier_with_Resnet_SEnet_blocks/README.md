@@ -581,7 +581,7 @@ In this section, I will test the trained model on a new dataset collected from g
 
 To generate images consistent with the train set used previously, the downloaded images are resized to 32 x 32 and normalised.
 
-![new_images](./new_images.PNG)
+![new_images](./examples/new_images.PNG)
 
 These images are located under the "new_images" folder. After resizing images, some of the new images are not really clear to even my eyes, but we will see how the model performs on these images. In particular, a classification of the fourth and last images is of interest because these images are ambiguous or blur to an extent that I would classify them with difficulties.
 
@@ -589,15 +589,15 @@ These images are located under the "new_images" folder. After resizing images, s
 
 Here are some images that were predicted correctly. The top five softmax scores are listed below.
 
-![correct1](./correct1.PNG)
+![correct1](./examples/correct1.PNG)
 
 The highest probaility is the index 10, which is No passing for vehicles over 3.5 metric tons. The model is quite certain about this sign being No passing for vehicles over 3.5 metric tons.
 
-![correct2](./correct2.PNG)
+![correct2](./examples/correct2.PNG)
 
 Again, the model classifies this sign correctly, which is Right-of-wa at the next intersection. With 99.99% confidence, the model classifies this sign correctly.
 
-![correct3](./correct3.PNG)
+![correct3](./examples/correct3.PNG)
 
 This is a correct classification - Priority road. Since there are not many signs with a yellow colour in the middle of the sign, I think this sign was quite easy to be predicted correctly. Again, the model is quite confident in classifying this sign as Priority road.
 
