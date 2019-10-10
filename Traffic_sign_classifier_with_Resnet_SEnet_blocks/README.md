@@ -1,13 +1,13 @@
-# Traffic Sign Classifer with Resnet-like and Squeeze-and-Excitation-like blocks
+# Traffic Sign Classifier with Resnet-like and Squeeze-and-Excitation-like blocks
 
 
-Overview
+## Overview
 ---
 The purpose of this project is to create an end-to-end process of classifying [German traffic sign images](http://benchmark.ini.rub.de/?section=gtsrb&subsection=dataset). The complete process includes:
  1. Preparation for data
  2. Exploratory data analysis
  3. Data processing and augmentation
- 4. Building a model archtecture for classification
+ 4. Building a model architecture for classification
  5. Deciding a loss function, metric(s), and other hyperparameters such as learning rate
  6. Training the model
  7. Analysing the results from the trained model on a new dataset
@@ -18,10 +18,10 @@ To undertake this project, I particularly focused on **enhancing performance by 
 
 In addition, I incorporated mitigation measures for overfitting issues through **adopting data augmentation**, such as rotation, horizontal flip, gaussian blur and adding noise, **incorporating cross validation sets** as well as **placing batch normalisation layers** in the model architecture.
 
-This project is strucutured with the four large segments as follow:
+This project is structured with the four large segments as follow:
 
-* Data - this section includes preparataion of importing and formatting data, exploratory data analysis, and data processing and augmentation prior to training.
-* Model architecture - this segment focuses on building an tailored arthitecture for the project. Two convolutional blocks, Resnet blocks and Squeeze and Excitation blocks (SE blocks), are built in the architecture.
+* Data - this section includes preparation of importing and formatting data, exploratory data analysis, and data processing and augmentation prior to training.
+* Model architecture - this segment focuses on building an tailored architecture for the project. Two convolutional blocks, Resnet blocks and Squeeze and Excitation blocks (SE blocks), are built in the architecture.
 * Training - this segment provides explanations and codes around loss function, metrics and training hyperparameters and how they are built in the TrainingPipeline class.
 * Result Analysis - this section outlines the results of validation sets and new test dataset. In addition, testing on newly-downloaded datasets is undertaken in this section.
 
@@ -68,7 +68,7 @@ When combined together, the training and validation dataset is 39,209.
 
 ![n_train_valid](./examples/n_train_valid.PNG)
 
-There are 43 classes/labels avaliable. This 'n_classes' variable will indicate this size, which will be useful throughout the project.
+There are 43 classes/labels available. This 'n_classes' variable will indicate this size, which will be useful throughout the project.
 
 ![n_classes1](./examples/n_classes1.PNG)
 
@@ -113,7 +113,7 @@ def plot_samples_per_label():
 
 ![vis2](./examples/vis2.PNG)
 
-Some images seem to have really bad quality. For instance, the second left example from Class 26, Traffic signals is not noticible because of its darkness.
+Some images seem to have really bad quality. For instance, the second left example from Class 26, Traffic signals is not noticeboard because of its darkness.
 
 ![vis5](./examples/vis5.PNG)
 
@@ -123,7 +123,7 @@ Also, some labels for the examples are not correct. For example, the sixth examp
 
 ![vis4](./examples/vis4.PNG)
 
-Because the images include different levels of brightness, I will focus on data augmentation methods that are more related to phyical transforms such as rotation and horizontal flip. Also, adding noise and blur are adopted for data augmentation.
+Because the images include different levels of brightness, I will focus on data augmentation methods that are more related to physical transforms such as rotation and horizontal flip. Also, adding noise and blur are adopted for data augmentation.
 
 
 ### Data processing
@@ -168,7 +168,7 @@ After creating cross-validation sets, the number of examples in the train and va
 
 ### Data Augmentation
 
-As discussed in the data visualisation section before, four data agumentation methods are used: rotation, horizontal flip, adding noise and blurring images. To display the effect of each method, I will use the display_image method to provide the original image on the left and the transformed image on the right.
+As discussed in the data visualisation section before, four data augmentation methods are used: rotation, horizontal flip, adding noise and blurring images. To display the effect of each method, I will use the display_image method to provide the original image on the left and the transformed image on the right.
 
 I created a simple ImageAugmentation class to augment the images.
 
@@ -225,11 +225,11 @@ The augmented images are compared below:
 
 With a random probability, some images are left as original while other images can be transformed with one of the four augmentation methods discussed above. I experimented with a greater extent of augmentation methods and it did not turn out well. I suspect this is because the original images are not of good quality and the size of images are only 32 by 32 that a greater degree augmentation may distort this small extent of the existing information heavily.
 
-Data preparation is done. It is time to think about what architecutre I would use for classifying the transformed dataset!
+Data preparation is done. It is time to think about what architecture I would use for classifying the transformed dataset!
 
 ## Model Architecture
 
-The model for classifying traffic signs incorporstes Resnet-like and SE-like blocks within the architecture. The characteristics of the architecture is as follow:
+The model for classifying traffic signs incorporates Resnet-like and SE-like blocks within the architecture. The characteristics of the architecture is as follow:
 
 1. There are four resnet blocks and three SE blocks.
 
@@ -237,13 +237,13 @@ The model for classifying traffic signs incorporstes Resnet-like and SE-like blo
 
 3. Each resnet block has two convolutional layer, batch normalisation layer, and relu activation. At the end of each resnet block, identify conv layer and the output of two resnet blocks are added.
 
-4. Following every resnet block except for the last resnet block, SE block contians average pooling, convolutional layer, relu activation, convolutional layer, relu, sigmoid and concatenation of the previous output and the output from the resnet block. Finally, the output of this concatenation is combined together with the identity conv layer.
+4. Following every resnet block except for the last resnet block, SE block contains average pooling, convolutional layer, relu activation, convolutional layer, relu, sigmoid and concatenation of the previous output and the output from the resnet block. Finally, the output of this concatenation is combined together with the identity conv layer.
 
 The overarching model architecture is described in a diagram below.
 
 ![model](./Model_diagram.png)
 
-The model architecutre is built with Tensorflow from scratch.
+The model architecture is built with Tensorflow from scratch.
 
 ```
 def ResNet_SE_like(x):
@@ -466,7 +466,7 @@ To train on the dataset, a number of hyperparameters had to be decided. These in
 * Epoch = Starting from 19 epoch and reduced as training progresses.
 * Batch size = 256
 * Learning rate = Learning rate decay is adopted, ranged from 0.01 to 0.01/(2^5), based on the result from experiments.
-* Loss function = Cross entorpy
+* Loss function = Cross entropy
 * Optimiser = Adam optimiser
 * Metric = Accuracy
 
@@ -595,7 +595,7 @@ The highest probaility is the index 10, which is No passing for vehicles over 3.
 
 ![correct2](./examples/correct2.PNG)
 
-Again, the model classifies this sign correctly, which is Right-of-wa at the next intersection. With 99.99% confidence, the model classifies this sign correctly.
+Again, the model classifies this sign correctly, which is Right-of-way at the next intersection. With 99.99% confidence, the model classifies this sign correctly.
 
 ![correct3](./examples/correct3.PNG)
 
@@ -614,7 +614,7 @@ Here are the images that were classified incorrectly.
 
 ![incorrect1](./examples/incorrect1.PNG)
 
-This image is incorrectly classified because it is difficult to classify even with my eyes. The correct lable is not even within the top 5 predictions. The model classifies this sign as Go straight or left with 65.86% confidence. 
+This image is incorrectly classified because it is difficult to classify even with my eyes. The correct label is not even within the top 5 predictions. The model classifies this sign as Go straight or left with 65.86% confidence. 
 
 ![incorrect2](./examples/incorrect2.PNG)
 
