@@ -6,4 +6,4 @@
 
 ## 3. Traffic Sign Classifier with Resnet and Squeeze and Excitation blocks - ![under /Traffic_sign_classifier_with_Resnet_SEnet_blocks/](https://github.com/YJAJ/Udacity_Self_Driving_Car_Engineer_Projects/tree/master/Traffic_sign_classifier_with_Resnet_SEnet_blocks)
 
-## 4. Behavioral Cloning for predicting steering wheel angles wit Darknet53 - ![under /Driving_behavioral_cloning/](https://github.com/YJAJ/Udacity_Self_Driving_Car_Engineer_Projects/tree/master/Driving_behavioral_cloning)
+## 4. Behavioral Cloning for predicting steering wheel angles wit Darknet53 - ![under /Driving_behavioral_cloning_with_darknet53/](https://github.com/YJAJ/Udacity_Self_Driving_Car_Engineer_Projects/tree/master/Driving_behavioral_cloning_with_darknet53)
