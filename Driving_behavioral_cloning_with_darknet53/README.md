@@ -266,13 +266,13 @@ def training_pipeline(data, model, learning_rate, filepath, bs, epoch):
 
 I need to define certain hyperparameters here, Learning rate, the number of Epoch and Batch size. 
 
-With a number of experiment, I found that Learning rate of 0.01 for a start is OK and Batch size of 8 is maximum I can pass on with my local environment. In addition, 2 Epochs are sufficient with Learning rate of 0.01. Then, a learning rate decay is applied for subsequent epochs.
+With a number of experiment, I found that Learning rate of 0.01 for a start is OK and Batch size of 8 is maximum I can pass on with my local environment. In addition, 1 Epoch is sufficient with Learning rate of 0.01. Then, a learning rate decay is applied for subsequent epochs.
 
 
 ## Result
 
 The trained model drove well until passing the bridge on the normal track. However, the car failed to follow the track right after the bridge because it went into an appealing dirt path that resembles the track.
 
-This is why I finetuned the model 3 additional epochs to generalise better. The final result for the normal track is below:
+This is why I finetuned the model with 3 additional epochs to generalise better. The final result for the normal track is below:
 
 ![normal_track_video](./project_video_normal.gif)
